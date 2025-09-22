@@ -42,7 +42,7 @@ export const useAuthProvider = () => {
       await supabase.rpc('log_security_event', {
         p_user_id: user?.id || null,
         p_event_type: eventType,
-        p_ip_address: null, // Will be set by server
+        p_ip_address: null,
         p_user_agent: navigator.userAgent,
         p_metadata: metadata,
         p_severity: severity
@@ -79,7 +79,6 @@ export const useAuthProvider = () => {
 
     const initializeAuth = async () => {
       try {
-        // Get initial session
         const { data: { session: initialSession }, error } = await supabase.auth.getSession();
         
         if (error) {
@@ -92,7 +91,6 @@ export const useAuthProvider = () => {
           setUser(initialSession.user);
           setSession(initialSession);
           
-          // Load user profile
           const userProfile = await loadUserProfile(initialSession.user.id);
           if (userProfile && mounted) {
             setProfile(userProfile);
@@ -109,7 +107,6 @@ export const useAuthProvider = () => {
 
     initializeAuth();
 
-    // Listen for auth changes
     const { data: { subscription } } = supabase.auth.onAuthStateChange(
       async (event, session) => {
         if (!mounted) return;
@@ -118,13 +115,11 @@ export const useAuthProvider = () => {
         setUser(session?.user || null);
 
         if (session?.user) {
-          // Load user profile
           const userProfile = await loadUserProfile(session.user.id);
           if (userProfile && mounted) {
             setProfile(userProfile);
           }
 
-          // Log successful login
           if (event === 'SIGNED_IN') {
             await logSecurityEvent('login_success', {
               email: session.user.email,
@@ -133,8 +128,6 @@ export const useAuthProvider = () => {
           }
         } else {
           setProfile(null);
-          
-          // Log logout
           if (event === 'SIGNED_OUT') {
             await logSecurityEvent('logout');
           }
@@ -150,7 +143,7 @@ export const useAuthProvider = () => {
     };
   }, []);
 
-  // Sign up function
+  // Sign up function (بدون rate limiting)
   const signUp = async (
     email: string, 
     password: string, 
@@ -158,19 +151,6 @@ export const useAuthProvider = () => {
   ) => {
     try {
       setLoading(true);
-
-      // Check rate limiting
-      const rateLimitCheck = await supabase.rpc('check_rate_limit', {
-        p_identifier: email,
-        p_action_type: 'signup',
-        p_max_attempts: 3,
-        p_window_minutes: 60
-      });
-
-      if (!rateLimitCheck.data) {
-        await logSecurityEvent('signup_rate_limited', { email }, 'warning');
-        return { error: new Error('تم تجاوز عدد المحاولات المسموح. حاول مرة أخرى لاحقاً') as AuthError };
-      }
 
       const { data, error } = await supabase.auth.signUp({
         email,
@@ -188,10 +168,7 @@ export const useAuthProvider = () => {
       });
 
       if (error) {
-        await logSecurityEvent('signup_failed', { 
-          email, 
-          error: error.message 
-        }, 'warning');
+        await logSecurityEvent('signup_failed', { email, error: error.message }, 'warning');
         return { error };
       }
 
@@ -211,23 +188,10 @@ export const useAuthProvider = () => {
     }
   };
 
-  // Sign in function
+  // Sign in function (بدون rate limiting)
   const signIn = async (email: string, password: string) => {
     try {
       setLoading(true);
-
-      // Check rate limiting
-      const rateLimitCheck = await supabase.rpc('check_rate_limit', {
-        p_identifier: email,
-        p_action_type: 'login',
-        p_max_attempts: 5,
-        p_window_minutes: 15
-      });
-
-      if (!rateLimitCheck.data) {
-        await logSecurityEvent('login_rate_limited', { email }, 'warning');
-        return { error: new Error('تم تجاوز عدد المحاولات المسموح. حاول مرة أخرى بعد 15 دقيقة') as AuthError };
-      }
 
       const { data, error } = await supabase.auth.signInWithPassword({
         email,
@@ -235,14 +199,10 @@ export const useAuthProvider = () => {
       });
 
       if (error) {
-        await logSecurityEvent('login_failed', { 
-          email, 
-          error: error.message 
-        }, 'warning');
+        await logSecurityEvent('login_failed', { email, error: error.message }, 'warning');
         return { error };
       }
 
-      // Update login statistics
       if (data.user) {
         await supabase
           .from('user_profiles')
@@ -285,22 +245,9 @@ export const useAuthProvider = () => {
     }
   };
 
-  // Reset password function
+  // Reset password function (بدون rate limiting)
   const resetPassword = async (email: string) => {
     try {
-      // Check rate limiting
-      const rateLimitCheck = await supabase.rpc('check_rate_limit', {
-        p_identifier: email,
-        p_action_type: 'password_reset',
-        p_max_attempts: 3,
-        p_window_minutes: 60
-      });
-
-      if (!rateLimitCheck.data) {
-        await logSecurityEvent('password_reset_rate_limited', { email }, 'warning');
-        return { error: new Error('تم تجاوز عدد المحاولات المسموح لإعادة تعيين كلمة المرور') as AuthError };
-      }
-
       const { error } = await supabase.auth.resetPasswordForEmail(email, {
         redirectTo: `${window.location.origin}/auth/reset-password`
       });
@@ -339,15 +286,12 @@ export const useAuthProvider = () => {
         return { error };
       }
 
-      // Reload profile
       const updatedProfile = await loadUserProfile(user.id);
       if (updatedProfile) {
         setProfile(updatedProfile);
       }
 
-      await logSecurityEvent('profile_updated', { 
-        updated_fields: Object.keys(updates) 
-      });
+      await logSecurityEvent('profile_updated', { updated_fields: Object.keys(updates) });
 
       toast({
         title: "تم تحديث الملف الشخصي",
@@ -364,7 +308,7 @@ export const useAuthProvider = () => {
   // Refresh session
   const refreshSession = async () => {
     try {
-      const { data, error } = await supabase.auth.refreshSession();
+      const { error } = await supabase.auth.refreshSession();
       if (error) {
         console.error('Session refresh error:', error);
         await signOut();
