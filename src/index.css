@@ -1,0 +1,824 @@
+/* منصة EDULY التعليمية - نظام التصميم العالمي المتقدم */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&family=Noto+Kufi+Arabic:wght@100;200;300;400;500;600;700;800;900&family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* EDULY Brand Colors - ألوان منصة EDULY الرسمية */
+    --background: 0 0% 100%;
+    --foreground: 210 24% 16%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 210 24% 16%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 210 24% 16%;
+
+    /* EDULY Teal - اللون الأساسي #009688 */
+    --primary: 174 100% 30%;
+    --primary-light: 174 100% 35%;
+    --primary-dark: 174 100% 25%;
+    --primary-foreground: 0 0% 100%;
+
+    /* EDULY Gold - اللون الثانوي #FFD700 */
+    --secondary: 51 100% 50%;
+    --secondary-light: 51 100% 55%;
+    --secondary-dark: 51 100% 45%;
+    --secondary-foreground: 210 24% 16%;
+
+    /* Complementary Colors for EDULY Theme */
+    --accent: 174 100% 30%;
+    --accent-light: 174 100% 35%;
+    --accent-dark: 174 100% 25%;
+    --accent-foreground: 0 0% 100%;
+
+    --success: 142 71% 45%;
+    --success-foreground: 0 0% 100%;
+
+    --warning: 51 100% 50%;
+    --warning-foreground: 210 24% 16%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    --muted: 210 20% 96%;
+    --muted-foreground: 210 10% 46%;
+
+    --border: 210 20% 90%;
+    --input: 210 20% 95%;
+    --ring: 174 100% 30%;
+
+    /* EDULY Gradients - تدرجات منصة EDULY */
+    --gradient-primary: linear-gradient(135deg, hsl(174 100% 30%) 0%, hsl(174 100% 35%) 100%);
+    --gradient-hero: linear-gradient(135deg, hsl(174 100% 30%) 0%, hsl(174 100% 35%) 25%, hsl(210 100% 40%) 75%, hsl(210 100% 45%) 100%);
+    --gradient-card: linear-gradient(145deg, hsl(var(--card)) 0%, hsl(210 20% 98%) 100%);
+    --gradient-glass: linear-gradient(145deg, rgba(255, 255, 255, 0.15) 0%, rgba(255, 255, 255, 0.08) 100%);
+    --gradient-premium: linear-gradient(135deg, hsl(51 100% 50%) 0%, hsl(51 100% 45%) 100%);
+    --gradient-success: linear-gradient(135deg, hsl(142 71% 45%) 0%, hsl(174 100% 30%) 100%);
+
+    /* الظلال المتقدمة */
+    --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+    --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+    --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+    --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+    --shadow-glow: 0 0 20px hsl(var(--primary) / 0.3);
+    --shadow-course: 0 8px 30px rgba(0, 0, 0, 0.12);
+
+    /* الانتقالات السلسة */
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-bounce: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+
+    --radius: 0.75rem;
+
+    --sidebar-background: 0 0% 98%;
+
+    --sidebar-foreground: 240 5.3% 26.1%;
+
+    --sidebar-primary: 240 5.9% 10%;
+
+    --sidebar-primary-foreground: 0 0% 98%;
+
+    --sidebar-accent: 240 4.8% 95.9%;
+
+    --sidebar-accent-foreground: 240 5.9% 10%;
+
+    --sidebar-border: 220 13% 91%;
+
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+
+  .dark {
+    --background: 210 20% 9%;
+    --foreground: 210 40% 98%;
+
+    --card: 210 20% 12%;
+    --card-foreground: 210 40% 98%;
+
+    --popover: 210 20% 12%;
+    --popover-foreground: 210 40% 98%;
+
+    /* نمط داكن متقدم للمنصة التعليمية */
+    --primary: 240 73% 65%;
+    --primary-light: 240 73% 70%;
+    --primary-dark: 240 73% 60%;
+    --primary-foreground: 222.2 47.4% 11.2%;
+
+    --secondary: 217 91% 65%;
+    --secondary-light: 217 91% 70%;
+    --secondary-dark: 217 91% 60%;
+    --secondary-foreground: 222.2 84% 4.9%;
+
+    --accent: 142 71% 50%;
+    --accent-light: 142 71% 55%;
+    --accent-dark: 142 71% 45%;
+    --accent-foreground: 222.2 84% 4.9%;
+
+    --success: 142 71% 50%;
+    --success-foreground: 222.2 84% 4.9%;
+
+    --warning: 43 96% 60%;
+    --warning-foreground: 222.2 84% 4.9%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 240 73% 65%;
+    
+    --sidebar-background: 240 5.9% 10%;
+    --sidebar-foreground: 240 4.8% 95.9%;
+    --sidebar-primary: 240 73% 65%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 240 3.7% 15.9%;
+    --sidebar-accent-foreground: 240 4.8% 95.9%;
+    --sidebar-border: 240 3.7% 15.9%;
+    --sidebar-ring: 240 73% 65%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-arabic;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+
+  /* دعم اللغة العربية الكامل */
+  html[dir="rtl"] {
+    direction: rtl;
+  }
+
+  .font-arabic {
+    font-family: 'Noto Kufi Arabic', 'Poppins', 'Inter', system-ui, sans-serif;
+    font-weight: 400;
+    letter-spacing: -0.01em;
+  }
+
+  .font-english {
+    font-family: 'Poppins', 'Inter', system-ui, sans-serif;
+    font-weight: 400;
+    letter-spacing: -0.01em;
+  }
+
+  .font-display {
+    font-family: 'Poppins', 'Noto Kufi Arabic', system-ui, sans-serif;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+  }
+}
+
+@layer components {
+  /* مكونات المنصة التعليمية المتقدمة */
+  .hero-gradient {
+    background: var(--gradient-hero);
+  }
+
+  .card-gradient {
+    background: var(--gradient-card);
+  }
+
+  .glass-effect {
+    background: var(--gradient-glass);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+  }
+
+  .course-card {
+    @apply bg-card rounded-xl overflow-hidden transition-all duration-300 hover:shadow-xl hover:-translate-y-1;
+    box-shadow: var(--shadow-course);
+  }
+
+  .course-card:hover {
+    box-shadow: var(--shadow-xl);
+  }
+
+  .btn-primary {
+    @apply bg-primary hover:bg-primary-dark text-primary-foreground font-medium px-6 py-3 rounded-lg;
+    transition: var(--transition-smooth);
+    box-shadow: var(--shadow-md);
+  }
+
+  .btn-primary:hover {
+    box-shadow: var(--shadow-lg);
+    transform: translateY(-1px);
+  }
+
+  .btn-secondary {
+    @apply bg-secondary hover:bg-secondary-dark text-secondary-foreground font-medium px-6 py-3 rounded-lg;
+    transition: var(--transition-smooth);
+  }
+
+  .btn-accent {
+    @apply bg-accent hover:bg-accent-dark text-accent-foreground font-medium px-6 py-3 rounded-lg;
+    transition: var(--transition-smooth);
+  }
+
+  .sidebar-gradient {
+    background: linear-gradient(180deg, hsl(var(--card)) 0%, hsl(var(--muted)) 100%);
+  }
+
+  /* تأثيرات تفاعلية متقدمة */
+  .interactive-scale {
+    transition: var(--transition-bounce);
+  }
+
+  .interactive-scale:hover {
+    transform: scale(1.02);
+  }
+
+  .glow-effect {
+    box-shadow: var(--shadow-glow);
+  }
+
+  /* شبكة الكورسات المتجاوبة */
+  .courses-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 1.5rem;
+  }
+
+  @media (max-width: 768px) {
+    .courses-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  /* رسوم متحركة متقدمة */
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes fadeInDown {
+    from {
+      opacity: 0;
+      transform: translateY(-30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes slideInRight {
+    from {
+      opacity: 0;
+      transform: translateX(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  @keyframes slideInLeft {
+    from {
+      opacity: 0;
+      transform: translateX(-30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  @keyframes scaleIn {
+    from {
+      opacity: 0;
+      transform: scale(0.8);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
+  @keyframes pulse {
+    0%, 100% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(1.05);
+    }
+  }
+
+  @keyframes glow {
+    0%, 100% {
+      box-shadow: 0 0 5px hsl(var(--primary) / 0.3);
+    }
+    50% {
+      box-shadow: 0 0 20px hsl(var(--primary) / 0.5), 0 0 30px hsl(var(--primary) / 0.3);
+    }
+  }
+
+  @keyframes float {
+    0%, 100% {
+      transform: translateY(0px);
+    }
+    50% {
+      transform: translateY(-10px);
+    }
+  }
+
+  /* تطبيق الرسوم المتحركة */
+  .animate-fadeInUp {
+    animation: fadeInUp 0.6s ease-out forwards;
+  }
+
+  .animate-fadeInDown {
+    animation: fadeInDown 0.6s ease-out forwards;
+  }
+
+  .animate-slideInRight {
+    animation: slideInRight 0.6s ease-out forwards;
+  }
+
+  .animate-slideInLeft {
+    animation: slideInLeft 0.6s ease-out forwards;
+  }
+
+  .animate-scaleIn {
+    animation: scaleIn 0.5s ease-out forwards;
+  }
+
+  .animate-pulse-custom {
+    animation: pulse 2s infinite;
+  }
+
+  .animate-glow {
+    animation: glow 2s ease-in-out infinite;
+  }
+
+  .animate-float {
+    animation: float 3s ease-in-out infinite;
+  }
+
+  /* تأخير في الرسوم المتحركة للعناصر المتتالية */
+  .stagger-animation {
+    opacity: 0;
+    animation-fill-mode: forwards;
+  }
+
+  .stagger-animation:nth-child(1) { animation-delay: 0.1s; }
+  .stagger-animation:nth-child(2) { animation-delay: 0.2s; }
+  .stagger-animation:nth-child(3) { animation-delay: 0.3s; }
+  .stagger-animation:nth-child(4) { animation-delay: 0.4s; }
+  .stagger-animation:nth-child(5) { animation-delay: 0.5s; }
+  .stagger-animation:nth-child(6) { animation-delay: 0.6s; }
+
+  /* تحسينات التمرير السلس */
+  html {
+    scroll-behavior: smooth;
+  }
+
+  /* تحسينات للوضع المظلم */
+  .dark .hero-gradient {
+    background: linear-gradient(135deg, hsl(240 73% 25%) 0%, hsl(240 73% 30%) 25%, hsl(262 52% 25%) 75%, hsl(262 52% 30%) 100%);
+  }
+
+  .dark .glass-effect {
+    background: linear-gradient(145deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.02) 100%);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  /* Sidebar في الجه�� اليمين */
+  [data-sidebar="sidebar"] {
+    position: fixed !important;
+    right: 0;
+    top: 0;
+    height: 100vh;
+    z-index: 40;
+    transition: transform 0.3s ease, width 0.3s ease;
+    background: hsl(var(--background));
+    border-left: 1px solid hsl(var(--border));
+    box-shadow: -2px 0 20px rgba(0, 0, 0, 0.05);
+  }
+
+  [data-sidebar="sidebar"][data-collapsible="icon"][data-state="collapsed"] {
+    width: 60px !important;
+  }
+
+  [data-sidebar="sidebar"][data-collapsible="icon"][data-state="expanded"] {
+    width: 280px !important;
+  }
+
+  [data-sidebar-content] {
+    margin-left: 0;
+    min-height: 100vh;
+    transition: margin-left 0.3s ease;
+    width: 100%;
+  }
+
+  /* تحسينات للموبايل */
+  @media (max-width: 768px) {
+    [data-sidebar="sidebar"] {
+      transform: translateX(100%);
+    }
+
+    [data-sidebar="sidebar"][data-state="expanded"] {
+      transform: translateX(0);
+    }
+
+    [data-sidebar="sidebar"][data-state="expanded"] ~ [data-sidebar-content]::after {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.5);
+      z-index: 35;
+    }
+  }
+
+
+
+  /* EDULY Custom Animations - حركات EDULY المخصصة */
+  @keyframes fadeInRight {
+    from {
+      opacity: 0;
+      transform: translateX(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  @keyframes fadeInLeft {
+    from {
+      opacity: 0;
+      transform: translateX(-30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  .animate-fadeInRight {
+    animation: fadeInRight 0.8s ease-out forwards;
+  }
+
+  .animate-fadeInLeft {
+    animation: fadeInLeft 0.8s ease-out forwards;
+  }
+
+  /* EDULY Teal Color Classes */
+  .text-teal-600 {
+    color: hsl(174 100% 30%);
+  }
+
+  .bg-teal-600 {
+    background-color: hsl(174 100% 30%);
+  }
+
+  .border-teal-600 {
+    border-color: hsl(174 100% 30%);
+  }
+
+  .hover\:bg-teal-50:hover {
+    background-color: hsl(174 100% 97%);
+  }
+
+  .hover\:bg-teal-700:hover {
+    background-color: hsl(174 100% 25%);
+  }
+
+  .hover\:text-teal-600:hover {
+    color: hsl(174 100% 30%);
+  }
+
+  .hover\:border-teal-200:hover {
+    border-color: hsl(174 100% 80%);
+  }
+
+  .focus\:border-teal-500:focus {
+    border-color: hsl(174 100% 35%);
+  }
+
+  .focus\:ring-teal-500:focus {
+    --tw-ring-color: hsl(174 100% 35%);
+  }
+
+  /* EDULY Hero Background for Landing Page */
+  .hero-gradient {
+    background: linear-gradient(135deg, hsl(174 100% 30%) 0%, hsl(174 100% 35%) 25%, hsl(210 100% 40%) 75%, hsl(210 100% 45%) 100%);
+  }
+
+  /* تحسينات الوصولية */
+  @media (prefers-reduced-motion: reduce) {
+    * {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+
+  /* تحسينات للأداء */
+  .will-change-transform {
+    will-change: transform;
+  }
+
+  .will-change-opacity {
+    will-change: opacity;
+  }
+
+  /* تأثيرات إضافية للمنصة التعليمية */
+  .learning-card {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .learning-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+    transition: left 0.8s;
+  }
+
+  .learning-card:hover::before {
+    left: 100%;
+  }
+
+  /* تأثير النجوم للتقييمات */
+  .star-rating {
+    display: inline-flex;
+    gap: 2px;
+  }
+
+  .star-rating .star {
+    transition: all 0.2s ease;
+  }
+
+  .star-rating:hover .star {
+    transform: scale(1.1);
+  }
+
+  /* تحسينات النماذج */
+  .form-input:focus {
+    box-shadow: 0 0 0 3px hsl(var(--primary) / 0.1);
+  }
+
+  /* تأثيرات الأزرار المحسنة */
+  .btn-enhanced {
+    position: relative;
+    overflow: hidden;
+    transform: translateZ(0);
+  }
+
+  .btn-enhanced::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    transition: width 0.6s, height 0.6s;
+  }
+
+  .btn-enhanced:hover::before {
+    width: 300px;
+    height: 300px;
+  }
+
+  /* تحسينات متقدمة للمنصة التعليمية */
+  .glass-morphism {
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  }
+
+  .dark .glass-morphism {
+    background: rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+  }
+
+  /* تحسين الشريط الجانبي */
+  .sidebar-shadow {
+    box-shadow:
+      0 0 0 1px rgba(0, 0, 0, 0.05),
+      0 4px 6px -1px rgba(0, 0, 0, 0.1),
+      0 10px 15px -3px rgba(0, 0, 0, 0.1);
+  }
+
+  /* تحسين التمرير */
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: hsl(var(--muted));
+    border-radius: 10px;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: hsl(var(--primary) / 0.3);
+    border-radius: 10px;
+    transition: background 0.2s;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: hsl(var(--primary) / 0.5);
+  }
+
+  /* ت��سين النصوص */
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  /* تحسين الشبكة */
+  .grid-auto-fit {
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  }
+
+  /* تحسين التفاعل */
+  .hover-lift {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .hover-lift:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  }
+
+  /* تحسين البطاقات */
+  .card-premium {
+    background: linear-gradient(145deg, hsl(var(--card)), hsl(var(--muted) / 0.3));
+    border: 2px solid hsl(var(--border) / 0.5);
+    box-shadow:
+      0 4px 6px -1px rgba(0, 0, 0, 0.1),
+      0 2px 4px -1px rgba(0, 0, 0, 0.06),
+      0 0 0 1px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .card-premium:hover {
+    border-color: hsl(var(--primary) / 0.3);
+    box-shadow:
+      0 20px 25px -5px rgba(0, 0, 0, 0.1),
+      0 10px 10px -5px rgba(0, 0, 0, 0.04),
+      0 0 0 1px hsl(var(--primary) / 0.1);
+  }
+
+  /* تحسين المدخلات */
+  .input-premium {
+    background: hsl(var(--background) / 0.8);
+    border: 2px solid hsl(var(--border) / 0.5);
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .input-premium:focus {
+    border-color: hsl(var(--primary));
+    box-shadow: 0 0 0 3px hsl(var(--primary) / 0.1);
+    background: hsl(var(--background));
+  }
+
+  /* التحسينات المتقدمة */
+  .premium-gradient {
+    background: linear-gradient(
+      135deg,
+      hsl(var(--primary)) 0%,
+      hsl(var(--primary) / 0.8) 25%,
+      hsl(var(--secondary)) 50%,
+      hsl(var(--secondary) / 0.8) 75%,
+      hsl(var(--accent)) 100%
+    );
+  }
+
+  .premium-text-gradient {
+    background: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--secondary)), hsl(var(--accent)));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* تحسين الأداء */
+  .gpu-accelerated {
+    transform: translateZ(0);
+    will-change: transform;
+  }
+
+  /* تحسين السايدبار */
+  .sidebar-trigger {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .sidebar-trigger::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    background: rgba(var(--primary), 0.1);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    transition: width 0.4s, height 0.4s;
+  }
+
+  .sidebar-trigger:hover::before {
+    width: 100px;
+    height: 100px;
+  }
+
+  /* تحسين التوازن */
+  .balanced-layout {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    min-height: 100vh;
+  }
+
+  .content-centered {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    width: 100%;
+    margin: 0 auto;
+  }
+
+  /* تحسين الانتقالات */
+  .sidebar-transition {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  /* تحسين الاستجابة */
+  @media (max-width: 640px) {
+    .courses-grid {
+      grid-template-columns: 1fr;
+      gap: 1rem;
+    }
+
+    .hero-gradient {
+      background: linear-gradient(180deg, hsl(214 84% 56%) 0%, hsl(262 52% 47%) 100%);
+    }
+
+    .sidebar-trigger {
+      padding: 0.5rem;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .container {
+      padding-left: 1rem;
+      padding-right: 1rem;
+    }
+
+    .balanced-layout {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  /* تحسين النصوص العربية */
+  .font-arabic {
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* تحسين الأداء */
+  .gpu-optimize {
+    transform: translateZ(0);
+    backface-visibility: hidden;
+    perspective: 1000px;
+  }
+
+  /* تحسينات إضافية للمنصة */
+  .platform-gradient {
+    background: linear-gradient(135deg,
+      hsl(var(--primary)) 0%,
+      hsl(var(--secondary)) 50%,
+      hsl(var(--accent)) 100%);
+  }
+
+  .text-gradient {
+    background: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--secondary)));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+}
