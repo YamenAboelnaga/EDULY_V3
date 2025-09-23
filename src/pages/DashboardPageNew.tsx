@@ -455,7 +455,7 @@ export default function DashboardPageNew() {
               transition={{ duration: 0.6 }}
             >
               <h1 className="text-3xl font-bold text-gray-900 dark:text-white mb-2">
-                مرحباً بك، {userName}! 👋
+                مرحباً بك {userName} 👋
               </h1>
               <p className="text-gray-600 dark:text-gray-400 text-lg">
                 استمر في رحلت�� التعليمية وحقق أهدافك الأكاديمية

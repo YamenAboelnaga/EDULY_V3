@@ -238,7 +238,7 @@ export default function DemoPage() {
             transition={{ duration: 0.8 }}
           >
             <h2 className="text-5xl font-bold text-white mb-6">
-              مستعد لبدء رحلتك ال��عليمية؟
+              مستعد لبدء رحلتك التعليمية؟
             </h2>
             <p className="text-xl text-white/90 mb-8 max-w-2xl mx-auto">
               انضم إلى آلاف الطلاب الذين حققوا أحلامهم مع منصة EDULY

@@ -137,7 +137,7 @@ export function Header() {
               <div className="relative">
                 <Search className="absolute right-4 top-1/2 transform -translate-y-1/2 text-muted-foreground w-4 h-4 group-focus-within:text-primary transition-colors duration-200" />
                 <Input
-                  placeholder="ابحث عن المواد، الدروس، المدرسين..."
+                  placeholder="ابحث عن المواد والدروس والمدرسين"
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
                   className="pr-12 pl-4 h-11 text-right font-arabic bg-muted/50 border-border/60 focus:bg-background focus:border-primary/60 focus:shadow-lg focus:shadow-primary/10 transition-all duration-300 rounded-xl"

@@ -472,10 +472,10 @@ export default function LandingPage({ initialAuthModal }: LandingPageProps) {
             transition={{ duration: 0.8 }}
           >
             <h2 className="text-5xl font-extrabold mb-6 text-gray-900 dark:text-white">
-              شاهد EDULY في العم��: مستقبل تعليمك بين يديك
+              شاهد EDULY في العمل - مستقبل تعليمك بين يديك
             </h2>
             <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
-              اكتشف كيف تع��ل منصة EDULY ��كيف ��تغير طريقة تعلمك للأفضل
+              اكتشف كيف تعمل منصة EDULY وكيف ستغير طريقة تعلمك للأفضل
             </p>
           </motion.div>
 

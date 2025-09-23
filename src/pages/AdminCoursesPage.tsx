@@ -94,7 +94,7 @@ const grades = [
 ];
 
 const levels = [
-  { value: "مبتدئ", label: "م��تدئ" },
+  { value: "مبتدئ", label: "مبتدئ" },
   { value: "متوسط", label: "متوسط" },
   { value: "متقدم", label: "متقدم" }
 ];
@@ -520,7 +520,7 @@ export default function AdminCoursesPage() {
                     <Input
                       value={formData.groupLink}
                       onChange={(e) => setFormData({...formData, groupLink: e.target.value})}
-                      placeholder={formData.groupType === 'whatsapp' ? 'https://chat.whatsapp.com/invite/...' : 'https://t.me/...'}
+                      placeholder={formData.groupType === 'whatsapp' ? 'https://chat.whatsapp.com/invite/example' : 'https://t.me/example'}
                       className="text-right font-arabic h-12"
                     />
                     <p className="text-sm text-muted-foreground font-arabic mt-2">
@@ -764,7 +764,7 @@ export default function AdminCoursesPage() {
           <Dialog open={!!editingCourse} onOpenChange={() => {setEditingCourse(null); resetForm();}}>
             <DialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto">
               <DialogHeader>
-                <DialogTitle className="text-2xl font-arabic">تعديل الك��رس</DialogTitle>
+                <DialogTitle className="text-2xl font-arabic">تعديل الكورس</DialogTitle>
               </DialogHeader>
               
               <Tabs defaultValue="basic" className="w-full">
@@ -791,7 +791,7 @@ export default function AdminCoursesPage() {
                       <Input
                         value={formData.instructor}
                         onChange={(e) => setFormData({...formData, instructor: e.target.value})}
-                        placeholder="أدخ�� اسم المدرس"
+                        placeholder="أدخل اسم المدرس"
                         className="text-right font-arabic h-12"
                       />
                     </div>
@@ -884,7 +884,7 @@ export default function AdminCoursesPage() {
                     <Textarea
                       value={formData.features}
                       onChange={(e) => setFormData({...formData, features: e.target.value})}
-                      placeholder="شرح مبسط&#10;أمثلة تطبيقية&#10;امتحانات تج��يبية"
+                      placeholder="شرح مبسط&#10;أمثلة تطبيقية&#10;امتحانات تجريبية"
                       className="text-right font-arabic min-h-[120px]"
                     />
                   </div>
@@ -910,7 +910,7 @@ export default function AdminCoursesPage() {
                                 رفع صورة الكورس
                               </Button>
                               <p className="text-sm text-muted-foreground font-arabic mt-2">
-                                ��فضل استخدام صور بحجم 800x400 بكسل
+                                يفضل استخدام صور بحجم 800x400 بكسل
                               </p>
                             </div>
                           </div>
@@ -933,7 +933,7 @@ export default function AdminCoursesPage() {
                             <img src={selectedTeacherImage} alt="صورة المدرس" className="w-32 h-32 object-cover rounded-full mx-auto" />
                             <Button variant="outline" onClick={() => teacherImageInputRef.current?.click()} className="font-arabic">
                               <Upload className="w-4 h-4 ml-2" />
-                              ��غيير الصورة
+                              تغيير الصورة
                             </Button>
                           </div>
                         ) : (
@@ -988,7 +988,7 @@ export default function AdminCoursesPage() {
                     <Input
                       value={formData.groupLink}
                       onChange={(e) => setFormData({...formData, groupLink: e.target.value})}
-                      placeholder={formData.groupType === 'whatsapp' ? 'https://chat.whatsapp.com/invite/...' : 'https://t.me/...'}
+                      placeholder={formData.groupType === 'whatsapp' ? 'https://chat.whatsapp.com/invite/example' : 'https://t.me/example'}
                       className="text-right font-arabic h-12"
                     />
                     <p className="text-sm text-muted-foreground font-arabic mt-2">

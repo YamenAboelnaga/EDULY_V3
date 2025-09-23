@@ -348,7 +348,7 @@ export default function AdminDashboard() {
                 id="duration"
                 value={formData.duration}
                 onChange={(e) => setFormData({ ...formData, duration: e.target.value })}
-                placeholder="مثال: 80 ساعة"
+                placeholder="مثال 80 ساعة"
                 className="font-arabic"
               />
             </div>

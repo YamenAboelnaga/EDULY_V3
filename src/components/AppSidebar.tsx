@@ -261,7 +261,7 @@ export function AppSidebar() {
               <Search className="absolute right-3 top-1/2 transform -translate-y-1/2 text-muted-foreground w-4 h-4" />
               <Input
                 type="text"
-                placeholder="ابحث في المنصة..."
+                placeholder="ابحث في المنصة"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 className="pr-10 text-right font-arabic h-10 bg-muted/50 border-border/50 focus:bg-background focus:border-primary/50 transition-all duration-300"
